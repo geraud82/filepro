@@ -1,4 +1,9 @@
 require("dotenv").config();
+
+// Keep process alive if a dependency emits an unhandled error
+process.on("uncaughtException",  (err) => console.error("[uncaughtException]",  err.message));
+process.on("unhandledRejection", (err) => console.error("[unhandledRejection]", err));
+
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
