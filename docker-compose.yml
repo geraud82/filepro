@@ -1,12 +1,17 @@
 version: '3.8'
 
-# ── Copy this file to your VPS, then run:
-#    DOMAIN=yourdomain.com docker-compose up -d --build
-# Or set DOMAIN in a .env file at the project root.
+# ── Dokploy / Traefik deployment ──────────────────────────────────────────────
+# Set these environment variables in the Dokploy UI (Compose → Environment):
+#   DOMAIN                    your domain, e.g. filepro.example.com
+#   REDIS_PASSWORD            strong random password for Redis
+#   STRIPE_SECRET_KEY         sk_live_... (optional)
+#   STRIPE_WEBHOOK_SECRET     whsec_...  (optional)
+#   STRIPE_PUBLISHABLE_KEY    pk_live_... (optional)
+# ─────────────────────────────────────────────────────────────────────────────
 
 services:
 
-  # ── Redis ─────────────────────────────────────────────────────────────────
+  # ── Redis ───────────────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
     container_name: filepro-redis
@@ -23,31 +28,29 @@ services:
       timeout: 5s
       retries: 5
 
-  # ── Backend API ───────────────────────────────────────────────────────────
+  # ── Backend API ──────────────────────────────────────────────────────────────
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: filepro-backend
     environment:
-      NODE_ENV:          production
-      PORT:              5000
-      REDIS_HOST:        redis
-      REDIS_PORT:        6379
-      REDIS_PASSWORD:    ${REDIS_PASSWORD:-changeme_redis_password}
-      ALLOWED_ORIGINS:   https://${DOMAIN},https://www.${DOMAIN}
-      FRONTEND_URL:      https://${DOMAIN}
-      STRIPE_SECRET_KEY:      ${STRIPE_SECRET_KEY:-}
-      STRIPE_WEBHOOK_SECRET:  ${STRIPE_WEBHOOK_SECRET:-}
-      RATE_LIMIT_WINDOW_MS:   900000
+      NODE_ENV:                production
+      PORT:                    5000
+      REDIS_HOST:              redis
+      REDIS_PORT:              6379
+      REDIS_PASSWORD:          ${REDIS_PASSWORD:-changeme_redis_password}
+      ALLOWED_ORIGINS:         https://${DOMAIN:-localhost},https://www.${DOMAIN:-localhost}
+      FRONTEND_URL:            https://${DOMAIN:-localhost}
+      STRIPE_SECRET_KEY:       ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET:   ${STRIPE_WEBHOOK_SECRET:-}
+      RATE_LIMIT_WINDOW_MS:    900000
       RATE_LIMIT_MAX_REQUESTS: 100
-      FILE_EXPIRY_HOURS: 1
-    env_file:
-      - ./backend/.env
+      FILE_EXPIRY_HOURS:       1
     volumes:
-      - ./backend/uploads:/app/uploads
-      - ./backend/outputs:/app/outputs
-      - ./backend/logs:/app/logs
+      - backend-uploads:/app/uploads
+      - backend-outputs:/app/outputs
+      - backend-logs:/app/logs
     depends_on:
       redis:
         condition: service_healthy
@@ -57,8 +60,14 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filepro-api.rule=Host(`${DOMAIN:-localhost}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.filepro-api.entrypoints=websecure"
+      - "traefik.http.routers.filepro-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.filepro-api.loadbalancer.server.port=5000"
 
-  # ── Queue Worker ──────────────────────────────────────────────────────────
+  # ── Queue Worker ─────────────────────────────────────────────────────────────
   worker:
     build:
       context: ./backend
@@ -66,36 +75,31 @@ services:
     container_name: filepro-worker
     command: node src/workers/processor.js
     environment:
-      NODE_ENV:       production
-      REDIS_HOST:     redis
-      REDIS_PORT:     6379
-      REDIS_PASSWORD: ${REDIS_PASSWORD:-changeme_redis_password}
+      NODE_ENV:          production
+      REDIS_HOST:        redis
+      REDIS_PORT:        6379
+      REDIS_PASSWORD:    ${REDIS_PASSWORD:-changeme_redis_password}
       FILE_EXPIRY_HOURS: 1
-    env_file:
-      - ./backend/.env
     volumes:
-      - ./backend/uploads:/app/uploads
-      - ./backend/outputs:/app/outputs
-      - ./backend/logs:/app/logs
+      - backend-uploads:/app/uploads
+      - backend-outputs:/app/outputs
+      - backend-logs:/app/logs
     depends_on:
       redis:
         condition: service_healthy
     restart: unless-stopped
 
-  # ── Frontend ──────────────────────────────────────────────────────────────
+  # ── Frontend ─────────────────────────────────────────────────────────────────
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        # Baked into the Next.js bundle at build time
-        NEXT_PUBLIC_API_BASE_URL: https://${DOMAIN}
-        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-}
+        NEXT_PUBLIC_API_BASE_URL:            https://${DOMAIN:-localhost}
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:  ${STRIPE_PUBLISHABLE_KEY:-}
     container_name: filepro-frontend
     environment:
       NODE_ENV: production
-    env_file:
-      - ./frontend/.env
     depends_on:
       backend:
         condition: service_healthy
@@ -105,27 +109,20 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-
-  # ── Nginx reverse proxy ───────────────────────────────────────────────────
-  nginx:
-    image: nginx:alpine
-    container_name: filepro-nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /var/www/certbot:/var/www/certbot:ro
-    depends_on:
-      frontend:
-        condition: service_healthy
-      backend:
-        condition: service_healthy
-    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filepro-web.rule=Host(`${DOMAIN:-localhost}`)"
+      - "traefik.http.routers.filepro-web.entrypoints=websecure"
+      - "traefik.http.routers.filepro-web.tls.certresolver=letsencrypt"
+      - "traefik.http.services.filepro-web.loadbalancer.server.port=3000"
+      - "traefik.http.routers.filepro-web.priority=1"
+      - "traefik.http.routers.filepro-api.priority=10"
 
 volumes:
   redis-data:
+  backend-uploads:
+  backend-outputs:
+  backend-logs:
 
 networks:
   default:
