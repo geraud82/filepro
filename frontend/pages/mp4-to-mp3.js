@@ -206,9 +206,14 @@ export default function Mp4ToMp3() {
             <h2 className="mb-6 text-2xl font-bold text-primary-900">How to Extract Audio from MP4 Videos</h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
               MP3 is the universal audio format — perfect for music, podcasts, lectures, and voice recordings.
-              FilePro uses FFmpeg, the industry-standard media processing library, to extract the audio
-              track from your MP4 video in high quality. The process takes just seconds and requires
-              no software installation.
+              FilePro uses{' '}
+              <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                FFmpeg
+              </a>
+              , the open-source multimedia framework trusted by YouTube, VLC, and thousands of
+              professional tools, to extract the audio track from your MP4 video in high quality.
+              The process takes just seconds and requires no software installation.
             </p>
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Features of our MP4 to MP3 converter</h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

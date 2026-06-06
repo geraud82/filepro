@@ -205,7 +205,17 @@ export default function WordToPdf() {
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
               Converting Word documents to PDF ensures your formatting, fonts, and layout are preserved
               exactly as intended — regardless of the recipient&apos;s operating system or Word version.
-              FilePro uses LibreOffice to produce accurate, standard-compliant PDF output in seconds.
+              FilePro uses{' '}
+              <a href="https://www.libreoffice.org/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                LibreOffice
+              </a>
+              {' '}to produce accurate,{' '}
+              <a href="https://pdfa.org/pdf-specification/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                ISO-standard PDF
+              </a>
+              {' '}output in seconds — no software installation required.
             </p>
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Features of our Word to PDF converter</h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

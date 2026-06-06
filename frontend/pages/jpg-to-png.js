@@ -203,10 +203,14 @@ export default function JpgToPng() {
           <div className="mt-14 rounded-2xl border border-gray-100 bg-white p-8">
             <h2 className="mb-6 text-2xl font-bold text-primary-900">Why Convert JPG to PNG?</h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
-              PNG is a lossless image format that preserves every pixel of your image without compression
-              artifacts. It&apos;s the go-to format for graphics, logos, screenshots, and any image that
-              requires transparency (alpha channel). Converting from JPG to PNG is ideal when you need
-              to edit an image further without additional quality loss.
+              <a href="https://www.w3.org/TR/png/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                PNG (Portable Network Graphics)
+              </a>
+              {' '}is a lossless image format standardized by the W3C that preserves every pixel without
+              compression artifacts. It&apos;s the go-to format for graphics, logos, screenshots, and any
+              image that requires transparency (alpha channel). Converting from JPG to PNG is ideal when
+              you need to edit an image further without additional quality loss.
             </p>
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Features of our JPG to PNG converter</h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

@@ -203,10 +203,18 @@ export default function PngToJpg() {
           <div className="mt-14 rounded-2xl border border-gray-100 bg-white p-8">
             <h2 className="mb-6 text-2xl font-bold text-primary-900">Why Convert PNG to JPG?</h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
-              JPG files are significantly smaller than PNG files, making them ideal for web pages,
-              email attachments, and social media uploads. While JPG uses lossy compression, the quality
-              difference is imperceptible for most photos. Convert PNG to JPG to reduce bandwidth usage
-              and improve page load times.
+              <a href="https://jpeg.org/jpeg/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                JPEG (JPG)
+              </a>
+              {' '}files are significantly smaller than PNG, making them ideal for web pages,
+              email attachments, and social media uploads. According to{' '}
+              <a href="https://web.dev/articles/compress-images" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                Google web.dev
+              </a>
+              , optimizing images is one of the highest-impact performance improvements for websites.
+              Convert PNG to JPG to reduce bandwidth usage and improve page load times.
             </p>
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Features of our PNG to JPG converter</h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

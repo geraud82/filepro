@@ -254,10 +254,19 @@ export default function CompressImage() {
           <div className="mt-14 rounded-2xl border border-gray-100 bg-white p-8">
             <h2 className="mb-6 text-2xl font-bold text-primary-900">How to Compress Images Without Losing Quality</h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
-              FilePro uses Sharp — a high-performance Node.js image processing library built on
-              libvips — to compress your JPG and PNG files. Sharp is up to 4x faster than ImageMagick
-              and produces smaller files with better quality. Compressed images retain their original
-              format and are ready for web, email, or social media.
+              FilePro uses{' '}
+              <a href="https://sharp.pixelplumbing.com/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                Sharp
+              </a>{' '}
+              — a high-performance Node.js image processing library built on{' '}
+              <a href="https://www.libvips.org/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                libvips
+              </a>{' '}
+              — to compress your JPG and PNG files. Sharp is up to 4x faster than ImageMagick
+              and produces smaller files with better visual quality. Compressed images retain their
+              original format and are ready for web, email, or social media.
             </p>
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Features of our image compressor</h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

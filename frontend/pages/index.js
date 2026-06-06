@@ -449,19 +449,30 @@ export default function Home() {
             <p className="text-lg text-slate-500">Everything you need to know about FilePro</p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            {[
-              { q: 'Is FilePro really free to use?', a: 'Yes. FilePro is 100% free with no signup required. Upload and convert or compress files instantly. Free plan supports files up to 20MB.' },
-              { q: 'How do I convert a PDF to Word?', a: 'Go to the PDF to Word tool, upload your PDF, and click Convert. Your editable DOCX file is ready to download in seconds — no registration needed.' },
-              { q: 'How do I compress a PDF without losing quality?', a: 'Use our Compress PDF tool. Choose "Low" for best quality, "Medium" for a balance, or "High" for the smallest file size. We use Ghostscript for lossless compression.' },
-              { q: 'Are my files kept private?', a: 'Absolutely. All uploaded files are encrypted in transit and automatically deleted from our servers after 1 hour. We never share or analyze your content.' },
-              { q: 'What file formats does FilePro support?', a: 'FilePro converts PDF ↔ Word (DOCX), JPG ↔ PNG, and MP4 → MP3. For compression: PDF, JPG, PNG, and MP4 files are all supported.' },
-              { q: 'What is the maximum file size?', a: 'Free users can upload files up to 20MB. Premium users get up to 500MB per file. No signup is required for the free plan.' },
-            ].map(({ q, a }) => (
-              <div key={q} className="rounded-xl border border-gray-200 bg-gray-50 p-6">
-                <h3 className="mb-2 text-base font-semibold text-gray-800">{q}</h3>
-                <p className="text-sm leading-relaxed text-slate-500">{a}</p>
-              </div>
-            ))}
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="mb-2 text-base font-semibold text-gray-800">Is FilePro really free to use?</h3>
+              <p className="text-sm leading-relaxed text-slate-500">Yes. FilePro is 100% free with no signup required. Upload and convert or compress files instantly. Free plan supports files up to 20MB.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="mb-2 text-base font-semibold text-gray-800">How do I convert a PDF to Word?</h3>
+              <p className="text-sm leading-relaxed text-slate-500">Go to the <a href="/pdf-to-word" className="text-primary-600 underline underline-offset-2 hover:text-primary-700">PDF to Word tool</a>, upload your PDF, and click Convert. Your editable DOCX file is ready to download in seconds — no registration needed.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="mb-2 text-base font-semibold text-gray-800">How do I compress a PDF without losing quality?</h3>
+              <p className="text-sm leading-relaxed text-slate-500">Use our <a href="/compress-pdf" className="text-primary-600 underline underline-offset-2 hover:text-primary-700">Compress PDF tool</a>. We use <a href="https://www.ghostscript.com/" target="_blank" rel="noopener noreferrer" className="text-primary-600 underline underline-offset-2 hover:text-primary-700">Ghostscript</a> — the industry-standard PDF compression engine — to reduce file size by 30–70% while preserving quality.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="mb-2 text-base font-semibold text-gray-800">Are my files kept private?</h3>
+              <p className="text-sm leading-relaxed text-slate-500">Absolutely. All uploaded files are encrypted in transit using <a href="https://www.cloudflare.com/learning/ssl/what-is-ssl/" target="_blank" rel="noopener noreferrer" className="text-primary-600 underline underline-offset-2 hover:text-primary-700">SSL/TLS</a> and automatically deleted from our servers after 1 hour. We never share or analyze your content.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="mb-2 text-base font-semibold text-gray-800">What file formats does FilePro support?</h3>
+              <p className="text-sm leading-relaxed text-slate-500">FilePro converts PDF ↔ Word (DOCX), JPG ↔ PNG, and MP4 → MP3. For compression: PDF, JPG, PNG, and MP4 files are all supported.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+              <h3 className="mb-2 text-base font-semibold text-gray-800">What is the maximum file size?</h3>
+              <p className="text-sm leading-relaxed text-slate-500">Free users can upload files up to 20MB. Premium users get up to 500MB per file. No signup is required for the free plan.</p>
+            </div>
           </div>
         </div>
       </section>

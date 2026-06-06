@@ -279,8 +279,18 @@ export default function PdfToWord() {
             </h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
               Converting PDF documents to editable Word files has never been easier.
-              Our free converter transforms your PDFs into fully editable DOCX files in
-              seconds — no software installation, no registration.
+              Our free converter uses{' '}
+              <a href="https://www.libreoffice.org/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                LibreOffice
+              </a>
+              {' '}— the open-source office suite trusted by millions worldwide — to transform your PDFs
+              into fully editable{' '}
+              <a href="https://learn.microsoft.com/en-us/openspecs/office_file_formats/ms-docx/b839fe1f-e1ca-4fa6-8c26-5954d0abbccd" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                DOCX files
+              </a>
+              {' '}in seconds — no software installation, no registration.
             </p>
 
             <h3 className="mb-4 text-lg font-semibold text-gray-800">

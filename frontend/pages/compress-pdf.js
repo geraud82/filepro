@@ -263,10 +263,20 @@ export default function CompressPdf() {
           <div className="mt-14 rounded-2xl border border-gray-100 bg-white p-8">
             <h2 className="mb-6 text-2xl font-bold text-primary-900">How to Compress a PDF Without Losing Quality</h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-500">
-              FilePro uses Ghostscript — the same engine used by enterprise PDF tools — to compress your
+              FilePro uses{' '}
+              <a href="https://www.ghostscript.com/" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                Ghostscript
+              </a>{' '}
+              — the same engine used by Adobe Acrobat and enterprise PDF tools — to compress your
               PDF files. Ghostscript optimizes embedded fonts, downsamples images, and removes redundant
-              metadata while preserving the content and structure of your document. Typical reduction:
-              30–60% with Medium compression, up to 70%+ with High.
+              metadata while preserving the content and structure of your document. According to the{' '}
+              <a href="https://www.iso.org/standard/75839.html" target="_blank" rel="noopener noreferrer"
+                className="text-primary-600 underline underline-offset-2 hover:text-primary-700">
+                ISO PDF standard
+              </a>
+              , compliant PDF files can be reduced by 30–70% without any visible quality loss. Typical
+              reduction: 30–60% with Medium compression, up to 70%+ with High.
             </p>
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Features of our PDF compressor</h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
