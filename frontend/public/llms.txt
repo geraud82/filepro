@@ -1,0 +1,61 @@
+# FilePro
+
+> FilePro is a free online file converter and compressor. Convert PDF to Word, Word to PDF, JPG to PNG, PNG to JPG, and MP4 to MP3. Compress PDF, images (JPG/PNG), and video (MP4) files. No signup or registration required. Files are automatically deleted after 1 hour.
+
+## What FilePro Does
+
+FilePro is a web-based file processing tool. Users upload a file, select a conversion or compression option, and download the result. The entire process takes seconds. No account creation, email address, or software installation is required.
+
+## Supported Operations
+
+### File Conversion
+- PDF to Word (.docx) — https://filepro.neobize.com/pdf-to-word
+- Word (.docx) to PDF — https://filepro.neobize.com/word-to-pdf
+- JPG/JPEG to PNG — https://filepro.neobize.com/jpg-to-png
+- PNG to JPG — https://filepro.neobize.com/png-to-jpg
+- MP4 to MP3 — https://filepro.neobize.com/mp4-to-mp3
+
+### File Compression
+- Compress PDF — https://filepro.neobize.com/compress-pdf
+- Compress Images (JPG, PNG) — https://filepro.neobize.com/compress-image
+- Compress Video (MP4) — https://filepro.neobize.com/compress
+- All compression — https://filepro.neobize.com/compress
+
+## Pricing
+
+FilePro has a free tier (no signup) and a paid Premium plan.
+
+- **Free**: $0/month. File size limit: 20MB. 1 file at a time. All formats supported. Files deleted after 1 hour. No ads: No. API access: No.
+- **Premium**: $9.99/month. File size limit: 500MB. Unlimited conversions. Batch uploads. No ads. Priority processing. API access.
+
+See full pricing: https://filepro.neobize.com/pricing
+Machine-readable pricing: https://filepro.neobize.com/pricing.md
+
+## Privacy & Security
+
+- All file transfers use SSL/TLS encryption
+- Uploaded files are stored temporarily and auto-deleted after 1 hour
+- FilePro does not store, analyze, or share user files
+- No account required — users are anonymous
+
+## Technical Stack
+
+- Frontend: Next.js 14 (Pages Router), TailwindCSS
+- Backend: Node.js/Express with Bull queue (Redis-backed async processing)
+- PDF processing: LibreOffice (conversions), Ghostscript (compression)
+- Image processing: Sharp (libvips-based)
+- Video/audio processing: FFmpeg
+- Infrastructure: Docker + Dokploy (Traefik reverse proxy)
+
+## Alternatives
+
+FilePro is a free alternative to:
+- Smallpdf (compress-pdf.com)
+- ILovePDF (ilovepdf.com)
+- Adobe Acrobat online tools
+- CloudConvert
+
+## Contact
+
+- Website: https://filepro.neobize.com
+- Support: contactneobize@gmail.com

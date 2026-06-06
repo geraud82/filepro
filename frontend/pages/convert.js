@@ -121,12 +121,35 @@ export default function Convert() {
   return (
     <>
       <Head>
-        <title>File Converter – Convert Files Online Free | FilePro</title>
-        <meta
-          name="description"
-          content="Convert files online for free. PDF to Word, DOCX to PDF, JPG to PNG, MP4 to MP3. Fast, secure, no registration required."
-        />
+        <title>Free Online File Converter – PDF, Word, JPG, MP4 | FilePro</title>
+        <meta name="description" content="Convert PDF to Word, Word to PDF, JPG to PNG, PNG to JPG, and MP4 to MP3 online free. No signup, no email required. Instant conversion in seconds." />
+        <meta name="keywords" content="online file converter free, convert pdf to word online free, word to pdf converter, jpg to png converter, mp4 to mp3 converter, free file conversion no registration" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://filepro.neobize.com/convert" />
+        <meta property="og:title" content="Free Online File Converter – PDF, Word, JPG, MP4 | FilePro" />
+        <meta property="og:description" content="Convert PDF to Word, Word to PDF, JPG to PNG, MP4 to MP3 online free. No signup, instant results." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://filepro.neobize.com/convert" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Online File Converter – No Signup | FilePro" />
+        <meta name="twitter:description" content="Convert PDF to Word, JPG to PNG, MP4 to MP3 online for free. No registration required." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'HowTo',
+              name: 'How to Convert Files Online Free',
+              description: 'Convert PDF to Word, Word to PDF, JPG to PNG, or MP4 to MP3 online without any software. Free, no signup required.',
+              step: [
+                { '@type': 'HowToStep', position: 1, name: 'Upload your file', text: 'Click or drag and drop your file. Supported formats: PDF, DOCX, JPG, PNG, MP4.' },
+                { '@type': 'HowToStep', position: 2, name: 'Choose output format', text: 'Select the output format from the dropdown. Options appear based on your file type.' },
+                { '@type': 'HowToStep', position: 3, name: 'Convert and download', text: 'Click Start Conversion. Your converted file is ready to download in seconds.' },
+              ],
+              tool: [{ '@type': 'HowToTool', name: 'FilePro online file converter' }],
+            }),
+          }}
+        />
       </Head>
 
       <div className="min-h-screen bg-primary-50/30 py-14">

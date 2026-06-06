@@ -104,12 +104,35 @@ export default function Compress() {
   return (
     <>
       <Head>
-        <title>File Compressor – Compress Files Online Free | FilePro</title>
-        <meta
-          name="description"
-          content="Compress PDF, images, and video files online for free. Reduce file size without losing quality. Fast, secure, no registration required."
-        />
+        <title>Compress PDF, Images & Video Online Free | FilePro</title>
+        <meta name="description" content="Compress PDF, JPG, PNG and MP4 files online free. Reduce file size without losing quality. See exact savings percentage. No signup required." />
+        <meta name="keywords" content="compress pdf online free, compress image online, reduce pdf file size, pdf compressor, compress video online, reduce image size free" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://filepro.neobize.com/compress" />
+        <meta property="og:title" content="Compress PDF, Images & Video Online Free | FilePro" />
+        <meta property="og:description" content="Compress PDF, images, and video online. Reduce file size without losing quality. Free, no signup." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://filepro.neobize.com/compress" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Compress PDF, Images & Video Free – FilePro" />
+        <meta name="twitter:description" content="Compress PDF, JPG, PNG and MP4 online. See exact size savings. Free, no registration." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'HowTo',
+              name: 'How to Compress Files Online Free',
+              description: 'Compress PDF, images (JPG, PNG), and MP4 video online without losing quality. Free, no signup required.',
+              step: [
+                { '@type': 'HowToStep', position: 1, name: 'Upload your file', text: 'Upload a PDF, JPG, PNG, or MP4 file by dragging and dropping or clicking to select.' },
+                { '@type': 'HowToStep', position: 2, name: 'Choose compression level', text: 'Select Low for best quality, Medium for a balance, or High for the smallest file size.' },
+                { '@type': 'HowToStep', position: 3, name: 'Download compressed file', text: 'Click Start Compression. See the exact file size savings, then download your compressed file.' },
+              ],
+              tool: [{ '@type': 'HowToTool', name: 'FilePro online file compressor' }],
+            }),
+          }}
+        />
       </Head>
 
       <div className="min-h-screen bg-primary-50/30 py-14">

@@ -131,16 +131,37 @@ export default function PdfToWord() {
   return (
     <>
       <Head>
-        <title>PDF to Word Converter – Free Online PDF to DOCX | FilePro</title>
-        <meta
-          name="description"
-          content="Convert PDF to Word (DOCX) online for free. Fast, secure, and easy. No registration required. Files deleted after 1 hour."
-        />
-        <meta
-          name="keywords"
-          content="pdf to word, pdf to docx, convert pdf to word, pdf converter, online pdf converter, free pdf converter"
-        />
+        <title>PDF to Word Converter Online Free – No Signup, No Email | FilePro</title>
+        <meta name="description" content="Convert PDF to Word (.docx) online in seconds. Free, no signup required, no email. Preserves formatting, images, and layout. Files auto-deleted for privacy." />
+        <meta name="keywords" content="pdf to word converter, pdf to docx, convert pdf to word online free no signup, pdf to word free, convert pdf to editable word" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://filepro.neobize.com/pdf-to-word" />
+        <meta property="og:title" content="PDF to Word Converter Online Free – No Signup | FilePro" />
+        <meta property="og:description" content="Convert PDF to editable Word (DOCX) online in seconds. Free, no registration, preserves formatting." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://filepro.neobize.com/pdf-to-word" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="PDF to Word Converter Free – No Signup | FilePro" />
+        <meta name="twitter:description" content="Convert PDF to editable Word (.docx) online for free. No signup, no email. Works on any device." />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org', '@type': 'HowTo',
+          name: 'How to Convert PDF to Word Online Free',
+          description: 'Convert PDF documents to editable Word (DOCX) files online in seconds, no registration required.',
+          step: [
+            { '@type': 'HowToStep', position: 1, name: 'Upload your PDF', text: 'Click the upload area or drag and drop your PDF file (up to 20MB on free plan).' },
+            { '@type': 'HowToStep', position: 2, name: 'Click Convert to Word', text: 'Click the Convert to Word button. FilePro processes your PDF using LibreOffice for accurate conversion.' },
+            { '@type': 'HowToStep', position: 3, name: 'Download your DOCX', text: 'Your Word file is ready in seconds. Click Download Word Document to save the DOCX file.' },
+          ],
+          tool: [{ '@type': 'HowToTool', name: 'FilePro PDF to Word converter' }],
+        }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org', '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'Is the PDF to Word converter really free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. FilePro PDF to Word converter is 100% free with no signup or email required. Convert PDF files up to 20MB at no cost.' } },
+            { '@type': 'Question', name: 'Does the converter preserve formatting?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. FilePro uses LibreOffice to preserve text, images, tables, and layout from your PDF when converting to DOCX.' } },
+            { '@type': 'Question', name: 'How long are my files kept after conversion?', acceptedAnswer: { '@type': 'Answer', text: 'Files are automatically deleted from our servers after 1 hour. Download your converted Word file within that window.' } },
+          ],
+        }) }} />
       </Head>
 
       <div className="min-h-screen bg-primary-50/30 py-14">

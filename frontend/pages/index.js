@@ -152,12 +152,50 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>FilePro - Free Online File Converter & Compressor</title>
-        <meta
-          name="description"
-          content="Convert and compress files online for free. PDF to Word, JPG to PNG, MP4 to MP3, and more. Fast, secure, and easy to use."
-        />
+        <title>FilePro – Free Online File Converter & Compressor | No Signup</title>
+        <meta name="description" content="Convert PDF to Word, Word to PDF, JPG to PNG, MP4 to MP3 — or compress PDF, images and video online. 100% free, no signup required. Files auto-deleted for privacy." />
+        <meta name="keywords" content="online file converter, pdf to word, compress pdf online free, jpg to png converter, mp4 to mp3 converter, free file converter, compress image online, word to pdf" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://filepro.neobize.com/" />
+        <meta property="og:title" content="FilePro – Free Online File Converter & Compressor" />
+        <meta property="og:description" content="Convert PDF to Word, compress PDF, JPG to PNG, MP4 to MP3. Free, no signup required. Files processed in seconds and auto-deleted." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://filepro.neobize.com/" />
+        <meta property="og:site_name" content="FilePro" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FilePro – Free Online File Converter & Compressor" />
+        <meta name="twitter:description" content="Convert PDF to Word, compress PDF, JPG to PNG, MP4 to MP3. Free, no signup." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareApplication',
+              name: 'FilePro',
+              applicationCategory: 'UtilitiesApplication',
+              operatingSystem: 'Web',
+              description: 'Free online file converter and compressor. Convert PDF to Word, Word to PDF, JPG to PNG, MP4 to MP3. Compress PDF, images, and video without losing quality.',
+              url: 'https://filepro.neobize.com',
+              offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free plan — no signup required' },
+              featureList: ['PDF to Word conversion', 'Word to PDF conversion', 'JPG to PNG conversion', 'PNG to JPG conversion', 'MP4 to MP3 conversion', 'PDF compression', 'Image compression', 'Video compression'],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                { '@type': 'Question', name: 'Is FilePro free to use?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. FilePro is 100% free with no signup required. The free plan supports files up to 20MB.' } },
+                { '@type': 'Question', name: 'How do I convert a PDF to Word?', acceptedAnswer: { '@type': 'Answer', text: 'Go to the PDF to Word tool, upload your PDF, and click Convert. Your DOCX file is ready in seconds.' } },
+                { '@type': 'Question', name: 'How do I compress a PDF without losing quality?', acceptedAnswer: { '@type': 'Answer', text: 'Use our Compress PDF tool. Choose Low compression for best quality, Medium for balanced results, or High for the smallest file size.' } },
+                { '@type': 'Question', name: 'Are my files kept private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All files are encrypted in transit and automatically deleted from our servers after 1 hour.' } },
+              ],
+            }),
+          }}
+        />
       </Head>
 
       {/* ─── Hero ─── */}
@@ -399,6 +437,31 @@ export default function Home() {
                 {premiumPlan.cta}
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="bg-white py-24" id="faq">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold text-primary-900">Frequently Asked Questions</h2>
+            <p className="text-lg text-slate-500">Everything you need to know about FilePro</p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {[
+              { q: 'Is FilePro really free to use?', a: 'Yes. FilePro is 100% free with no signup required. Upload and convert or compress files instantly. Free plan supports files up to 20MB.' },
+              { q: 'How do I convert a PDF to Word?', a: 'Go to the PDF to Word tool, upload your PDF, and click Convert. Your editable DOCX file is ready to download in seconds — no registration needed.' },
+              { q: 'How do I compress a PDF without losing quality?', a: 'Use our Compress PDF tool. Choose "Low" for best quality, "Medium" for a balance, or "High" for the smallest file size. We use Ghostscript for lossless compression.' },
+              { q: 'Are my files kept private?', a: 'Absolutely. All uploaded files are encrypted in transit and automatically deleted from our servers after 1 hour. We never share or analyze your content.' },
+              { q: 'What file formats does FilePro support?', a: 'FilePro converts PDF ↔ Word (DOCX), JPG ↔ PNG, and MP4 → MP3. For compression: PDF, JPG, PNG, and MP4 files are all supported.' },
+              { q: 'What is the maximum file size?', a: 'Free users can upload files up to 20MB. Premium users get up to 500MB per file. No signup is required for the free plan.' },
+            ].map(({ q, a }) => (
+              <div key={q} className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+                <h3 className="mb-2 text-base font-semibold text-gray-800">{q}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

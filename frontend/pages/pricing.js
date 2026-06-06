@@ -83,12 +83,34 @@ export default function Pricing() {
   return (
     <>
       <Head>
-        <title>Pricing – FilePro Premium Plans</title>
-        <meta
-          name="description"
-          content="Upgrade to FilePro Premium for larger file sizes, batch processing, and an ad-free experience. Simple monthly pricing."
-        />
+        <title>FilePro Pricing – Free vs Premium File Converter Plans</title>
+        <meta name="description" content="FilePro is free with no signup. Premium ($9.99/month) unlocks 500MB files, batch uploads, no ads, and API access. Compare free vs premium features." />
+        <meta name="keywords" content="filepro pricing, file converter free plan, file converter premium, pdf converter pricing, online file converter plans" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://filepro.neobize.com/pricing" />
+        <meta property="og:title" content="FilePro Pricing – Free vs Premium Plans" />
+        <meta property="og:description" content="Start free. Premium at $9.99/month adds 500MB files, batch uploads, no ads, and API access." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://filepro.neobize.com/pricing" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FilePro Pricing – Free vs Premium" />
+        <meta name="twitter:description" content="FilePro is free. Premium at $9.99/month adds 500MB file support, batch uploads, no ads, and API access." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                { '@type': 'Question', name: 'How does FilePro billing work?', acceptedAnswer: { '@type': 'Answer', text: 'Premium is billed monthly at $9.99. You can cancel anytime and your access continues until the end of your billing period. No surprise charges.' } },
+                { '@type': 'Question', name: 'Is my data secure with FilePro?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All files are encrypted during transmission and storage. Files are automatically deleted from our servers after 1 hour regardless of plan.' } },
+                { '@type': 'Question', name: 'Can I cancel FilePro anytime?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. There are no long-term contracts. Cancel from your account settings in seconds — access continues until your billing period ends.' } },
+                { '@type': 'Question', name: 'What payment methods does FilePro accept?', acceptedAnswer: { '@type': 'Answer', text: 'We accept all major credit cards (Visa, Mastercard, Amex) through Stripe, our PCI-compliant payment partner.' } },
+                { '@type': 'Question', name: 'What happens when I hit the free plan limit?', acceptedAnswer: { '@type': 'Answer', text: 'You\'ll see a prompt to upgrade. Free users can convert 1 file at a time up to 20 MB. No data is lost — just upgrade to continue.' } },
+              ],
+            }),
+          }}
+        />
       </Head>
 
       {/* Hero */}
