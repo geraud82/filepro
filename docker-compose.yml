@@ -49,26 +49,6 @@ services:
       - redis
     restart: unless-stopped
 
-  # ── Queue Worker ─────────────────────────────────────────────────────────────
-  worker:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    command: node src/workers/processor.js
-    environment:
-      NODE_ENV:          production
-      REDIS_HOST:        redis
-      REDIS_PORT:        6379
-      REDIS_PASSWORD:    ${REDIS_PASSWORD:-changeme_redis_password}
-      FILE_EXPIRY_HOURS: 1
-    volumes:
-      - backend-uploads:/app/uploads
-      - backend-outputs:/app/outputs
-      - backend-logs:/app/logs
-    depends_on:
-      - redis
-    restart: unless-stopped
-
   # ── Frontend ─────────────────────────────────────────────────────────────────
   frontend:
     build:

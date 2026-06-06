@@ -53,10 +53,7 @@ app.listen(config.server.port, () => {
   console.log(`Backend running on port ${config.server.port} [${config.nodeEnv}]`);
 });
 
-// ── Dev: run queue worker in the same process ──────────────────────────────────
-// In production, Docker starts a dedicated worker container (npm run worker).
-if (config.nodeEnv !== "production") {
-  require("./workers/processor");
-  require("./workers/cleanup");
-  console.log("Queue worker + cleanup scheduler started (dev mode)");
-}
+// Run queue worker and cleanup scheduler in the same process (all environments)
+require("./workers/processor");
+require("./workers/cleanup");
+console.log("Queue worker + cleanup scheduler started");
