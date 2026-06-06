@@ -21,7 +21,15 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
   : ["http://localhost:3000", "http://127.0.0.1:3000"];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    // Allow server-to-server (no Origin header) and configured origins
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      // Don't throw 500 — just omit CORS headers; browser handles it
+      callback(null, false);
+    }
+  },
   methods: ["GET", "POST"],
   credentials: false
 }));
