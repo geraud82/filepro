@@ -10,6 +10,9 @@ const stripeRoutes   = require("./routes/stripeRoutes");
 
 const app = express();
 
+// Trust Traefik / Dokploy reverse proxy so rate limiter uses real client IP
+app.set("trust proxy", 1);
+
 // ── CORS ──────────────────────────────────────────────────────────────────────
 // ALLOWED_ORIGINS is a comma-separated list set in .env
 // e.g. ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
