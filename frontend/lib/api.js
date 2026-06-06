@@ -5,14 +5,9 @@ import axios from "axios";
  * - Next.js: NEXT_PUBLIC_API_BASE_URL
  * - CRA / Vite fallback: localhost
  */
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
-
-/**
- * Axios instance
- */
+// Empty base URL → relative paths → Next.js rewrites proxy to backend container
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: "",
   withCredentials: false
 });
 
@@ -105,7 +100,7 @@ export const fileApi = {
    * Backend: GET /api/download/:filename
    */
   getDownloadUrl(fileName) {
-    return `${API_BASE_URL}/api/download/${fileName}`;
+    return `/api/download/${fileName}`;
   }
 };
 
