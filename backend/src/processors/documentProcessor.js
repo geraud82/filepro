@@ -6,6 +6,7 @@ const fsp = require("fs/promises");
 const os = require("os");
 const { v4: uuidv4 } = require("uuid");
 
+const { pathToFileURL } = require("url");
 const pdfParse = require("pdf-parse");
 const { Document, Packer, Paragraph } = require("docx");
 
@@ -14,13 +15,19 @@ const logger = require("../utils/logger");
 
 const execFileAsync = promisify(execFile);
 
-// Windows executables
-const SOFFICE_PATH = "C:\\Program Files\\LibreOffice\\program\\soffice.exe";
-const GHOSTSCRIPT_PATH = "C:\\Program Files\\gs\\gs10.06.0\\bin\\gswin64c.exe";
+const isWindows = process.platform === "win32";
 
-// OCR tools (set in .env)
+const SOFFICE_PATH = isWindows
+  ? "C:\\Program Files\\LibreOffice\\program\\soffice.exe"
+  : "soffice";
+
+const GHOSTSCRIPT_PATH = isWindows
+  ? "C:\\Program Files\\gs\\gs10.06.0\\bin\\gswin64c.exe"
+  : "gs";
+
+// OCR tools (set in .env or fallback to PATH)
 const TESSERACT_PATH = process.env.TESSERACT_PATH || "tesseract";
-const PDFTOPPM_PATH = process.env.PDFTOPPM_PATH || "pdftoppm";
+const PDFTOPPM_PATH  = process.env.PDFTOPPM_PATH  || "pdftoppm";
 
 /* ===================== helpers ===================== */
 
@@ -46,7 +53,7 @@ async function listFiles(dir) {
 
 function spawnWithTimeout(cmd, args, timeoutMs = 180000) {
   return new Promise((resolve, reject) => {
-    const child = spawn(cmd, args, { windowsHide: true });
+    const child = spawn(cmd, args, { windowsHide: isWindows });
     let stdout = "";
     let stderr = "";
     let killed = false;
@@ -281,7 +288,7 @@ class DocumentProcessor {
 
           const profileDir = path.join(jobDir, "lo_profile");
           ensureDir(profileDir);
-          const profileUrl = `file:///${profileDir.replace(/\\/g, "/")}`;
+          const profileUrl = pathToFileURL(profileDir).href;
 
           // STEP 1: PDF -> ODT
           const r1 = await spawnWithTimeout(SOFFICE_PATH, [
