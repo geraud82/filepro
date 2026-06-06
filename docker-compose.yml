@@ -1,9 +1,10 @@
 version: '3.8'
 
-# ── Dokploy / Traefik deployment ──────────────────────────────────────────────
-# Set these environment variables in the Dokploy UI (Compose → Environment):
-#   DOMAIN                    your domain, e.g. filepro.example.com
-#   REDIS_PASSWORD            strong random password for Redis
+# ── Dokploy deployment ────────────────────────────────────────────────────────
+# Dokploy manages domain routing through its UI (Compose → Domains tab).
+# Set these in Dokploy UI (Compose → Environment):
+#   DOMAIN                    e.g. filepro.neobize.com
+#   REDIS_PASSWORD            strong random password
 #   STRIPE_SECRET_KEY         sk_live_... (optional)
 #   STRIPE_WEBHOOK_SECRET     whsec_...  (optional)
 #   STRIPE_PUBLISHABLE_KEY    pk_live_... (optional)
@@ -14,7 +15,6 @@ services:
   # ── Redis ───────────────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
-    container_name: filepro-redis
     command: >
       redis-server
       --requirepass ${REDIS_PASSWORD:-changeme_redis_password}
@@ -28,7 +28,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: filepro-backend
     environment:
       NODE_ENV:                production
       PORT:                    5000
@@ -49,19 +48,12 @@ services:
     depends_on:
       - redis
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.filepro-api.rule=Host(`${DOMAIN:-localhost}`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.filepro-api.entrypoints=websecure"
-      - "traefik.http.routers.filepro-api.tls.certresolver=letsencrypt"
-      - "traefik.http.services.filepro-api.loadbalancer.server.port=5000"
 
   # ── Queue Worker ─────────────────────────────────────────────────────────────
   worker:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: filepro-worker
     command: node src/workers/processor.js
     environment:
       NODE_ENV:          production
@@ -83,29 +75,16 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_BASE_URL:            https://${DOMAIN:-localhost}
-        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:  ${STRIPE_PUBLISHABLE_KEY:-}
-    container_name: filepro-frontend
+        NEXT_PUBLIC_API_BASE_URL:           https://${DOMAIN:-localhost}
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-}
     environment:
       NODE_ENV: production
     depends_on:
-      - redis
+      - backend
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.filepro-web.rule=Host(`${DOMAIN:-localhost}`)"
-      - "traefik.http.routers.filepro-web.entrypoints=websecure"
-      - "traefik.http.routers.filepro-web.tls.certresolver=letsencrypt"
-      - "traefik.http.services.filepro-web.loadbalancer.server.port=3000"
-      - "traefik.http.routers.filepro-web.priority=1"
-      - "traefik.http.routers.filepro-api.priority=10"
 
 volumes:
   redis-data:
   backend-uploads:
   backend-outputs:
   backend-logs:
-
-networks:
-  default:
-    name: filepro-network
